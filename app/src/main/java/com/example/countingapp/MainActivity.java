@@ -29,16 +29,14 @@ public class MainActivity extends AppCompatActivity {
     public void onClickFirstButton(View view)
     {
         num1++;
-        TextView introTV = (TextView) findViewById(R.id.introTV); // name of the TV to be updated
-        introTV.setText("You now have " + num1 + " fishes");
+        updateIntroTV();
         //Toast.makeText(this, "You clicked the first button", Toast.LENGTH_LONG).show();
     }
 
     public void onClickSecondButton(View view)
     {
         num1--;
-        TextView introTV = (TextView) findViewById(R.id.introTV); // name of the TV to be updated
-        introTV.setText("You now have " + num1 + " fishes");
+        updateIntroTV();
         //Toast.makeText(this, "You clicked the second button", Toast.LENGTH_LONG).show();
     }
 
@@ -47,15 +45,31 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, Screen2.class));
     }
 
-//    public void openDialogue(View view)
-//    {
-//        AlertDialog.Builder builder = AlertDialog.Builder(this);
-//        builder.setMessage("Confirm reset count");
-//        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                Toast.makeText(MainActivity.this, "Yessir!", Toast.LENGTH_LONG).show();
-//            }
-//        })
-//    }
+    public void openDialogue(View view)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Confirm reset count");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this, "Yessir!", Toast.LENGTH_LONG).show();
+                num1 = 0;
+                updateIntroTV();
+            }
+        });
+        builder.setNegativeButton("nope", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void updateIntroTV()
+    {
+        TextView introTV = (TextView) findViewById(R.id.introTV); // name of the TV to be updated
+        introTV.setText("You now have " + num1 + " fishes");
+    }
 }
