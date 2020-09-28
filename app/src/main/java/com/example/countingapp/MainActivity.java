@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClickSecondButton(View view)
     {
         num1--;
+        TextView introTV = (TextView) findViewById(R.id.introTV); // name of the TV to be updated
+        introTV.setText("You now have " + num1 + " fishes");
         //Toast.makeText(this, "You clicked the second button", Toast.LENGTH_LONG).show();
     }
 
